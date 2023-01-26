@@ -28,15 +28,24 @@ const Navbar = () => {
               Sports
             </li>
           </Link>
+
+          <Link to='/entertaiment'>
           <li className="ml-3 mr-3 link link-underline link-underline-black">
             Entertaiment
           </li>
+          </Link>
+
+          <Link to='/health'>
           <li className="ml-3 mr-3 link link-underline link-underline-black">
             Health
           </li>
+          </Link>
+
+          <Link to='/technology'>
           <li className="ml-3 mr-3 link link-underline link-underline-black">
             Technology
           </li>
+          </Link>
         </ul>
       </div>
 
