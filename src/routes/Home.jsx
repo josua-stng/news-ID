@@ -8,7 +8,9 @@ const Home = () => {
   const getData = async () => {
     setIsLoading(true);
     const data = await fetch(`
-        https://newsapi.org/v2/top-headlines?country=id&apiKey=625ed779699647e6a4124019d07612d5`);
+        https://newsapi.org/v2/top-headlines?country=id&apiKey=${
+          import.meta.env.VITE_SOME_KEY
+        }`);
     const response = await data.json();
     setNews(response.articles);
     setIsLoading(false);
@@ -28,26 +30,25 @@ const Home = () => {
           <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 p-4">
             {newsId.map((news, index) => {
               return (
-                <div
-                  key={index}
-                  className="flex flex-col items-center justify-center mt-[30px]"
-                >
-                  <img
-                    src={`${news.urlToImage}`}
-                    className="w-full h-[200px] object-cover"
-                  />
-                  <div className="lg:flex justify-start mt-2 w-full items-center ">
-                    <p className="uppercase bg-green-400 text-slate-600 text-bold text-sm p-[3px]">
-                      {news.author}
-                    </p>
-                    <p className="ml-3 text-sm font-light">
-                      {new Date(news.publishedAt).toDateString()}
+                <a href={`${news.url}`} target="_blank" key={index}>
+                  <div className="flex flex-col items-center justify-center mt-[30px]">
+                    <img
+                      src={`${news.urlToImage}`}
+                      className="w-full h-[200px] object-cover"
+                    />
+                    <div className="lg:flex justify-start mt-2 w-full items-center ">
+                      <p className="uppercase bg-green-400 text-slate-600 text-bold text-sm p-[3px]">
+                        {news.author}
+                      </p>
+                      <p className="ml-3 text-sm font-light">
+                        {new Date(news.publishedAt).toDateString()}
+                      </p>
+                    </div>
+                    <p className="overflow-hidden h-[50px] mt-2 font-bold">
+                      {news.description}
                     </p>
                   </div>
-                  <p className="overflow-hidden h-[50px] mt-2 font-bold">
-                    {news.description}
-                  </p>
-                </div>
+                </a>
               );
             })}
           </div>

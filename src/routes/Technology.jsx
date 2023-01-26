@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 
-const Sports = () => {
+const Technology = () => {
   const [newsId, setNews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const getData = async () => {
     setIsLoading(true);
     const data = await fetch(`
-    https://newsapi.org/v2/top-headlines?country=id&category=sports&apiKey=${
-      import.meta.env.VITE_SOME_KEY
-    }`);
+        https://newsapi.org/v2/top-headlines?country=id&category=technology&apiKey=${
+          import.meta.env.VITE_SOME_KEY
+        }`);
     const response = await data.json();
     setNews(response.articles);
     setIsLoading(false);
@@ -58,4 +58,4 @@ const Sports = () => {
   );
 };
 
-export default Sports;
+export default Technology;
